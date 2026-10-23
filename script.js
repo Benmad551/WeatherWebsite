@@ -65,7 +65,7 @@ function displayWeather(weatherData) {
   document.getElementById("humidity").textContent = `Humidity: ${weatherData.humidity}%`;
   document.getElementById("description").textContent = `Description: ${weatherData.description}`;
   document.getElementById("windSpeed").textContent = `Wind Speed: ${weatherData.windSpeed} mph`;
-  const iconUrl = `http://openweathermap.org/img/wn/${weatherData.icon}.png`;
+  const iconUrl = `https://openweathermap.org/img/wn/${weatherData.icon}.png`;
   document.getElementById("icon").src = iconUrl;
 }
 
