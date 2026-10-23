@@ -1,6 +1,6 @@
 async function getGeoLocation(city) {
   const apiKey = '3db7e3d8e95dfdabc841e3d6317f29f9';
-  const url = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${apiKey}`;
+  const url = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${apiKey}`;
   try {
     const response = await fetch(url);
     if (!response.ok) {
