@@ -1,13 +1,40 @@
     
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: #ffffff; /* White text for contrast */
+    margin-bottom: 20px;
+}
 
+header h1 {
+    align-items: left;
+    font-size: 2.5em;
+}
+
+header.cityInput {
+    align-items: right;
+    margin-bottom: 20px;
+}
 
 .weatherCard {
-    background: rgba(222, 236, 20, 0.568); /* Semi-transparent background */
+    background: rgba(249, 249, 249, 0.149); /* Semi-transparent background */
       backdrop-filter: blur(10px); /* Blur effect */
       border-radius: 15px; /* Rounded corners */
       padding: 20px;
       text-align: center;
       color: #ffffff; /* White text for contrast */
+    margin-top: 20px;
+    width: 300px;
+}
+
+#cityInput {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    margin-right: 10px;
+    width: 600px;
 }
 
 /* Make sure the container covers the full background */
@@ -27,7 +54,7 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(122, 122, 126, 0.6), rgba(189, 153, 222, 0.6));
+  background: linear-gradient(135deg, rgb(42, 42, 44), rgba(29, 4, 53, 0.625));
   opacity: 0.5; /* Adjust opacity for a subtle effect */
 }
 
@@ -43,16 +70,16 @@
 .circle:nth-child(1) {
   width: 200px;
   height: 200px;
-  left: 10%;
-  top: 20%;
+  left: 5%;
+  bottom: 10%;
   animation-duration: 12s;
 }
 
 .circle:nth-child(2) {
-  width: 350px;
-  height: 350px;
-  right: 15%;
-  bottom: 10%;
+  width: 150px;
+  height: 150px;
+  left: 15%;
+  bottom: 13%;
   animation-duration: 18s;
   animation-delay: -2s;
 }
@@ -70,9 +97,39 @@
   width: 250px;
   height: 250px;
   right: 20%;
-  top: 30%;
+  bottom: 30%;
   animation-duration: 20s;
   animation-delay: -8s;
+}
+
+.circle:nth-child(5) {
+  width: 200px;
+  height: 200px;
+  left: 35%;
+  bottom: 20%;
+  animation-duration: 25s;
+  animation-delay: -10s;
+}
+
+.circle:nth-child(6) {
+  width: 50px;
+  height: 50px;
+  right: 10%;
+  bottom: 5%;
+  animation-duration: 30s;
+  animation-delay: -4s;
+}
+
+
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(214, 211, 211, 0.037);
+  color: white;
+  text-align: center;
 }
 
 /* Floating animation */
@@ -81,6 +138,6 @@
     transform: translateY(0px) translateX(0px) scale(1);
   }
   50% {
-    transform: translateY(-40px) translateX(20px) scale(1.05);
+    transform: translateY(-60px) translateX(50px) scale(1.05);
   }
 }
