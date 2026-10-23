@@ -1,0 +1,86 @@
+    
+
+
+.weatherCard {
+    background: rgba(222, 236, 20, 0.568); /* Semi-transparent background */
+      backdrop-filter: blur(10px); /* Blur effect */
+      border-radius: 15px; /* Rounded corners */
+      padding: 20px;
+      text-align: center;
+      color: #ffffff; /* White text for contrast */
+}
+
+/* Make sure the container covers the full background */
+.background-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #0f172a; /* Dark background color */
+  z-index: -1; /* Pushes it behind your website content */
+}
+
+.background-animation::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(122, 122, 126, 0.6), rgba(189, 153, 222, 0.6));
+  opacity: 0.5; /* Adjust opacity for a subtle effect */
+}
+
+/* Style for the individual circles */
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(122, 122, 126, 0.6), rgba(189, 153, 222, 0.6));
+  animation: float 10s infinite ease-in-out;
+}
+
+/* Position and size each circle differently */
+.circle:nth-child(1) {
+  width: 200px;
+  height: 200px;
+  left: 10%;
+  top: 20%;
+  animation-duration: 12s;
+}
+
+.circle:nth-child(2) {
+  width: 350px;
+  height: 350px;
+  right: 15%;
+  bottom: 10%;
+  animation-duration: 18s;
+  animation-delay: -2s;
+}
+
+.circle:nth-child(3) {
+  width: 150px;
+  height: 150px;
+  left: 50%;
+  top: 60%;
+  animation-duration: 15s;
+  animation-delay: -5s;
+}
+
+.circle:nth-child(4) {
+  width: 250px;
+  height: 250px;
+  right: 20%;
+  top: 30%;
+  animation-duration: 20s;
+  animation-delay: -8s;
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-40px) translateX(20px) scale(1.05);
+  }
+}
