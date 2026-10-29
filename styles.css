@@ -1,40 +1,57 @@
     
 header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    color: #ffffff; /* White text for contrast */
-    margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  color: #ffffff; /* White text for contrast */
+  margin: 0px 20px 20px 20px;
 }
 
 header h1 {
-    align-items: left;
-    font-size: 2.5em;
+  align-items: left;
+  font-size: 2.5em;
 }
 
-header.cityInput {
-    align-items: right;
-    margin-bottom: 20px;
+header #cityInput {
+  align-items: right;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;               /* Removes default browser margin */
+  padding: 0;              /* Ensures no extra padding pushes content down */
+  background-color: #1a1a2e;
+  font-family: sans-serif;
+  color: #fff;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;     /* Keeps the card centered horizontally */
 }
 
 .weatherCard {
-    background: rgba(249, 249, 249, 0.149); /* Semi-transparent background */
-      backdrop-filter: blur(10px); /* Blur effect */
-      border-radius: 15px; /* Rounded corners */
-      padding: 20px;
-      text-align: center;
-      color: #ffffff; /* White text for contrast */
-    margin-top: 20px;
-    width: 300px;
+  background: rgba(249, 249, 249, 0.082);
+  backdrop-filter: blur(8px); /* Blur effect */
+  border-radius: 15px; 
+  padding: 20px;
+  text-align: center;
+  color: #ffffff;
+  margin-top: 20px;
+  width: 300px;
 }
 
 #cityInput {
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    margin-right: 10px;
-    width: 600px;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  margin-right: 10px;
+  width: 600px;
 }
 
 /* Make sure the container covers the full background */

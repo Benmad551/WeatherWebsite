@@ -55,6 +55,9 @@ async function getWeatherForLocation(city) {
 document.getElementById("cityInput").addEventListener("keydown", function(event) {
   if (event.key === "Enter") {
     handleCityInput();
+    setTimeout(() => {
+    document.getElementById("weatherCard").classList.remove("hidden");
+    }, 500); //Delay to ensure the weather data is displayed before showing the card
   }
 });
 
