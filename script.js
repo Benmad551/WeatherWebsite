@@ -8,7 +8,7 @@ async function getGeoLocation(city) {
 
     const result = await response.json();
     if (result.length === 0) {
-      throw new Error("City not found. Please check your spelling.");
+      throw new Error("Location not found. Please check your spelling.");
     }
     const { lat, lon } = result[0];
     return { lat, lon};
@@ -72,7 +72,7 @@ async function handleCityInput() {
   errorMessage.classList.add("hidden");
 
   if (!city) {
-    errorMessage.textContent = "Please enter a city name.";
+    errorMessage.textContent = "Please enter a Location name.";
     errorMessage.classList.remove("hidden");
     weather.classList.add("hidden");
     weatherCard.classList.remove("hidden");
