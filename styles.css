@@ -1,4 +1,6 @@
-    
+/* <----------------------------------------------------->
+                    Header Styles
+   <-----------------------------------------------------> */    
 header {
   display: flex;
   flex-direction: row;
@@ -15,6 +17,11 @@ header h1 {
 
 header #cityInput {
   align-items: right;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  margin-right: 10px;
+  width: 600px;
 }
 
 body {
@@ -46,15 +53,14 @@ main {
   width: 300px;
 }
 
-#cityInput {
-  padding: 10px;
-  border-radius: 5px;
-  border: none;
-  margin-right: 10px;
-  width: 600px;
+#errorMessage {
+    color: #ff4d4d;
 }
 
-/* Make sure the container covers the full background */
+/* <----------------------------------------------------->
+            Background Animation Styles
+   <-----------------------------------------------------> */
+
 .background-animation {
   position: fixed;
   top: 0;
@@ -139,16 +145,6 @@ main {
 
 
 
-footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: rgba(214, 211, 211, 0.037);
-  color: white;
-  text-align: center;
-}
-
 /* Floating animation */
 @keyframes float {
   0%, 100% {
@@ -157,4 +153,14 @@ footer {
   50% {
     transform: translateY(-60px) translateX(50px) scale(1.05);
   }
+}
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(214, 211, 211, 0.037);
+  color: white;
+  text-align: center;
 }

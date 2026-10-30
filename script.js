@@ -1,24 +1,22 @@
 async function getGeoLocation(city) {
   const apiKey = '3db7e3d8e95dfdabc841e3d6317f29f9';
   const url = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${apiKey}`;
-  try {
     const response = await fetch(url);
     if (!response.ok) {
       throw new Error(`Geocoding Failed: ${response.status}`);
     }
 
     const result = await response.json();
+    if (result.length === 0) {
+      throw new Error("City not found. Please check your spelling.");
+    }
     const { lat, lon } = result[0];
     return { lat, lon};
-  } catch (error) {
-    throw error;
-  }
 }
 
 async function getWeather(lat, lon) {
   const apiKey = '3db7e3d8e95dfdabc841e3d6317f29f9';
   const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`;
-  try {
     const response = await fetch(url);
     if (!response.ok) {
       throw new Error(`Weather Query Failed: ${response.status}`);
@@ -26,13 +24,9 @@ async function getWeather(lat, lon) {
 
     const result = await response.json();
     return result;
-  } catch (error) {
-    throw error;
-  }
 }
 
 async function getWeatherForLocation(city) {
-  try {
     const { lat, lon } = await getGeoLocation(city);
     const weather = await getWeather(lat, lon);
     
@@ -46,22 +40,16 @@ async function getWeatherForLocation(city) {
       icon: weather.weather[0].icon,
       windSpeed: weather.wind.speed,
     };
-
-  } catch (error) {
-    throw error;
-  }
 }
 
 document.getElementById("cityInput").addEventListener("keydown", function(event) {
   if (event.key === "Enter") {
     handleCityInput();
-    setTimeout(() => {
-    document.getElementById("weatherCard").classList.remove("hidden");
-    }, 500); //Delay to ensure the weather data is displayed before showing the card
   }
 });
 
 function displayWeather(weatherData) {
+  const weather = document.getElementById("weather");
   document.getElementById("city").textContent = `${weatherData.city}, ${weatherData.country}`;
   document.getElementById("temp").textContent = `Temperature: ${weatherData.temp} °F`;
   document.getElementById("feelsLike").textContent = `Feels Like: ${weatherData.feelsLike} °F`;
@@ -70,19 +58,36 @@ function displayWeather(weatherData) {
   document.getElementById("windSpeed").textContent = `Wind Speed: ${weatherData.windSpeed} mph`;
   const iconUrl = `https://openweathermap.org/img/wn/${weatherData.icon}.png`;
   document.getElementById("icon").src = iconUrl;
+  weather.classList.remove("hidden");
 }
 
 
 async function handleCityInput() {
+  const weather = document.getElementById("weather");
+  const weatherCard = document.getElementById("weatherCard");
   const city = document.getElementById("cityInput").value.trim();
+  const errorMessage = document.getElementById("errorMessage");
+  
+  errorMessage.textContent = "";
+  errorMessage.classList.add("hidden");
 
-  if (!city) return;
+  if (!city) {
+    errorMessage.textContent = "Please enter a city name.";
+    errorMessage.classList.remove("hidden");
+    weather.classList.add("hidden");
+    weatherCard.classList.remove("hidden");
+    return;
+  };
 
   try {
     const weatherData = await getWeatherForLocation(city);
     displayWeather(weatherData);
+    weatherCard.classList.remove("hidden");
 
   } catch (error) {
-    throw error;
+    errorMessage.textContent = error.message;
+    errorMessage.classList.remove("hidden");
+    weather.classList.add("hidden");
+    weatherCard.classList.remove("hidden");
   }
 }
