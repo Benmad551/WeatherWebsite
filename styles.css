@@ -132,6 +132,34 @@ footer {
   text-align: center;
 }
 
+.mario-tornado {
+  position: fixed;
+  top: 45%;
+  left: -20%;
+  font-size: 56px;
+  z-index: 9999;
+  pointer-events: none;
+  filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.6));
+  animation: marioTornadoSweep 2.6s ease-in-out forwards;
+}
+
+@keyframes marioTornadoSweep {
+  0% {
+    transform: translateX(0) rotate(0deg) scale(0.8);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(60vw) rotate(720deg) scale(1.2);
+  }
+  100% {
+    transform: translateX(130vw) rotate(1440deg) scale(0.9);
+    opacity: 0;
+  }
+}
+
 /* Floating animation */
 @keyframes float {
   0%, 100% {
