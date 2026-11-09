@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
+    <title>Weather Website</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="utilities.css">
 </head>
+
+<body>
 
 <div class="background-animation">
   <div class="circle"></div>
@@ -18,12 +21,12 @@
 
 <header>
     <h1>Weather App</h1>
-<input id="cityInput" type="search" placeholder="Search city, e.g. Louisville, KY, US">
+    <input id="cityInput" type="search" aria-label="Search city or location" placeholder="Search City or Location, e.g. Louisville, KY, US">
 </header>
 
-<body>
-
-<div class="weatherCard">
+<main>
+<div class="weatherCard hidden" id="weatherCard">
+    <p id="errorMessage" class="hidden"></p>
     <div id="weather">
         <p id="city"></p>
         <p id="temp"></p>
@@ -48,7 +51,7 @@
     <p>Created by Glasses Gang &copy; 2026</p>
     <p id="versionTag">v 0.1</p>
 </footer>
-
+</body>
 <script src="script.js"></script>
 <script src="f13.js"></script>
 </html>
