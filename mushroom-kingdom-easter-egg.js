@@ -1,16 +1,21 @@
 let marioAudioContext;
 
 function showMushroomKingdomEasterEgg() {
+  const weatherCard = document.getElementById("weatherCard");
+  const errorMessage = document.getElementById("errorMessage");
+
   document.getElementById("city").textContent = "🍄 Mushroom Kingdom";
-  document.getElementById("temp").textContent = "Temperature: Warp Whistle Warm";
-  document.getElementById("feelsLike").textContent = "Feels Like: 8-Bit Breezy";
+  document.getElementById("temp").textContent = "Temperature: Warp Pipe Warm";
+  document.getElementById("feelsLike").textContent = "Feels Like: 1-Up Awesome";
   document.getElementById("humidity").textContent = "Humidity: 100% Coin Shine";
-  document.getElementById("description").textContent = "Description: Mario 3 Warp Whistle Time!";
-  document.getElementById("windSpeed").textContent = "Wind Speed: Whistle Warp Fast";
+  document.getElementById("description").textContent = "Description: It's-a me, Mario!";
+  document.getElementById("windSpeed").textContent = "Wind Speed: Koopa Kart Fast";
   document.getElementById("icon").src = "https://openweathermap.org/img/wn/01d.png";
 
   showMarioTornado();
-  playWarpWhistleTheme();
+  playMarioThemeJingle();
+  weatherCard.classList.remove("hidden");
+  errorMessage.classList.add("hidden");
 }
 
 function showMarioTornado() {
@@ -21,13 +26,13 @@ function showMarioTornado() {
 
   const tornado = document.createElement("div");
   tornado.className = "mario-tornado";
-  tornado.textContent = "🌀🎵🌀";
+  tornado.textContent = "🌀🍄🌀";
   tornado.setAttribute("aria-hidden", "true");
   document.body.appendChild(tornado);
   tornado.addEventListener("animationend", () => tornado.remove(), { once: true });
 }
 
-function playWarpWhistleTheme() {
+function playMarioThemeJingle() {
   const AudioContextClass = window.AudioContext || window.webkitAudioContext;
   if (!AudioContextClass) return;
 
@@ -39,30 +44,42 @@ function playWarpWhistleTheme() {
     marioAudioContext.resume();
   }
 
-  const startTime = marioAudioContext.currentTime;
-  const whistles = [
-    { delay: 0, from: 1960, to: 988, duration: 0.28 },
-    { delay: 0.35, from: 1760, to: 880, duration: 0.28 }
+  const notes = [
+    { frequency: 659.25, duration: 0.12 },
+    { frequency: 659.25, duration: 0.12 },
+    { frequency: 0, duration: 0.08 },
+    { frequency: 659.25, duration: 0.12 },
+    { frequency: 0, duration: 0.08 },
+    { frequency: 523.25, duration: 0.12 },
+    { frequency: 659.25, duration: 0.12 },
+    { frequency: 0, duration: 0.08 },
+    { frequency: 783.99, duration: 0.2 }
   ];
 
-  whistles.forEach(({ delay, from, to, duration }) => {
-    const toneStart = startTime + delay;
-    const toneEnd = toneStart + duration;
+  let currentTime = marioAudioContext.currentTime;
+
+  notes.forEach(({ frequency, duration }) => {
+    if (frequency === 0) {
+      currentTime += duration;
+      return;
+    }
+
     const oscillator = marioAudioContext.createOscillator();
     const gainNode = marioAudioContext.createGain();
 
-    oscillator.type = "triangle";
-    oscillator.frequency.setValueAtTime(from, toneStart);
-    oscillator.frequency.exponentialRampToValueAtTime(to, toneEnd);
-
-    gainNode.gain.setValueAtTime(0.0001, toneStart);
-    gainNode.gain.exponentialRampToValueAtTime(0.22, toneStart + 0.03);
-    gainNode.gain.exponentialRampToValueAtTime(0.0001, toneEnd);
+    oscillator.type = "square";
+    oscillator.frequency.setValueAtTime(frequency, currentTime);
+    gainNode.gain.setValueAtTime(0.0001, currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(0.25, currentTime + 0.01);
+    gainNode.gain.exponentialRampToValueAtTime(0.0001, currentTime + duration);
 
     oscillator.connect(gainNode);
     gainNode.connect(marioAudioContext.destination);
-    oscillator.start(toneStart);
-    oscillator.stop(toneEnd);
+
+    oscillator.start(currentTime);
+    oscillator.stop(currentTime + duration);
+
+    currentTime += duration;
   });
 }
 
