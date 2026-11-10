@@ -143,18 +143,6 @@ main {
   animation-delay: -4s;
 }
 
-
-
-footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: rgba(214, 211, 211, 0.037);
-  color: white;
-  text-align: center;
-}
-
 .mario-tornado {
   position: fixed;
   top: 45%;
