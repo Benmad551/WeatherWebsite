@@ -21,7 +21,14 @@
 
 <header>
     <h1>Weather App</h1>
-    <input id="cityInput" type="search" aria-label="Search city or location" placeholder="Search City or Location, e.g. Louisville, KY, US">
+    <div class="header-controls">
+        <input id="cityInput" type="search" aria-label="Search city or location" placeholder="Search City or Location, e.g. Louisville, KY, US">
+        <select id="unitSelect" aria-label="Select temperature unit">
+            <option value="imperial">Fahrenheit</option>
+            <option value="metric">Celsius</option>
+            <option value="standard">Kelvin</option>
+        </select>
+    </div>
 </header>
 
 <main>
@@ -48,8 +55,14 @@
 </main>
 
 <footer>
-    <p>Created by Glasses Gang &copy; 2026</p>
-    <p id="versionTag">v 1.0</p>
+    <div class="footer-left">
+        <p id="versionTag">v 1.1</p>
+        <p>Created by Glasses Gang &copy; 2026</p>
+    </div>
+    <div class="footer-right">
+        <p>Refer to <a href="https://www.weather.gov/" target="_blank" rel="noopener noreferrer">weather.gov</a> for severe weather warnings.</p>
+    </div>
+
 </footer>
 </body>
 
